@@ -1,9 +1,10 @@
+
 <p id="notice"><%= notice %></p>
+<div class="container mt-5">
+<h4>Employees</h4>
 
-<h1>Employees</h1>
-
-<table>
-  <thead>
+<table class="table">
+  <thead class="thead-light">
     <tr>
       <th>Name</th>
       <th>Email</th>
@@ -19,7 +20,7 @@
         <td><%= employee.name %></td>
         <td><%= employee.email %></td>
         <td><%= employee.phone %></td>
-        <td><%= employee.company %></td>
+        <td><%= employee.company.name %></td>
         <td><%= link_to 'Show', employee %></td>
         <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
         <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>

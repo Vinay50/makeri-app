@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_20_082356) do
+ActiveRecord::Schema.define(version: 2019_08_24_081848) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2019_05_20_082356) do
     t.integer "rgt", default: 0, null: false
     t.integer "depth", default: 0, null: false
     t.integer "children_count", default: 0, null: false
+    t.boolean "is_admin"
     t.index ["company_id"], name: "index_employees_on_company_id"
   end
 

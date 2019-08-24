@@ -1,37 +1,45 @@
-<%= form_with(model: employee, local: true) do |form| %>
-  <% if employee.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+  <div class="col-lg-6 offset-md-3">
+  <h4><%= "New Employee" if controller.action_name == "new" %></h4>
+  <h4><%= "Editing Employee" if controller.action_name == "edit" %></h4>
+  <%= form_with(model: employee, local: true) do |form| %>
+    <% if employee.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
 
-      <ul>
-      <% employee.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% employee.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, :class => 'form-control' %>
     </div>
+
+    <div class="form-group">
+      <%= form.label :email %>
+      <%= form.text_field :email, :class => 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :phone %>
+      <%= form.text_field :phone, :class => 'form-control'%>
+    </div>
+
+    <div class="form-group">
+      <%= form.label :company_id %>
+      <%= form.collection_select :company_id, Company.all.collect, :id, :name, {}, :class => 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= form.submit :submit, :class => 'btn btn-success form-control' %>
+    </div>
+
+    <%= link_to 'Back', companies_path if controller.action_name == 'new' %>
+    <%= link_to 'Show', @company if controller.action_name == 'edit' %>
   <% end %>
+</div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
-  </div>
-
-  <div class="field">
-    <%= form.label :company_id %>
-    <%= form.text_field :company_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>

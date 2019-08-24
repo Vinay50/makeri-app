@@ -1,22 +1,31 @@
-<%= form_with(model: company, local: true) do |form| %>
-  <% if company.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
+<div class="col-lg-6 offset-md-3">
+  <h4><%= "New Company" if controller.action_name == "new" %></h4>
+  <h4><%= "Editing Company" if controller.action_name == "edit" %></h4>
+  <%= form_with(model: company, local: true) do |form| %>
+    <% if company.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
 
-      <ul>
-      <% company.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% company.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :name %>
+      <%= form.text_field :name, :class => 'form-control' %>
     </div>
+
+    <div class="form-group">
+      <%= form.submit :submit, :class => 'btn btn-success form-control' %>
+    </div>
+
+    <%= link_to 'Back', companies_path if controller.action_name == 'new' %>
+    <%= link_to 'Show', @company if controller.action_name == 'edit' %>
   <% end %>
+</div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
