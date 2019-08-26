@@ -1,28 +1,30 @@
 class EmployeesController < ApplicationController
   before_action :set_employee, only: [:show, :edit, :update, :destroy]
 
-  # GET /employees
-  # GET /employees.json
   def index
     @employees = Employee.all
   end
 
-  # GET /employees/1
-  # GET /employees/1.json
   def show
   end
 
-  # GET /employees/new
   def new
     @employee = Employee.new
   end
 
-  # GET /employees/1/edit
   def edit
   end
 
-  # POST /employees
-  # POST /employees.json
+  def bulk_import
+  end
+
+  # bulk employees import
+  def import
+    binding.pry
+    Employee.employee_import(params[:file], company_id)
+    redirect_to employees_path, notice: "Employees imported."
+  end
+
   def create
     @employee = Employee.new(employee_params)
 
@@ -37,8 +39,6 @@ class EmployeesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /employees/1
-  # PATCH/PUT /employees/1.json
   def update
     respond_to do |format|
       if @employee.update(employee_params)
@@ -51,8 +51,6 @@ class EmployeesController < ApplicationController
     end
   end
 
-  # DELETE /employees/1
-  # DELETE /employees/1.json
   def destroy
     @employee.destroy
     respond_to do |format|

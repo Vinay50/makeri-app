@@ -1,0 +1,19 @@
+<div class="container mt-5">
+  <div class="row">
+      <div class="col-lg-6 offset-md-3">
+        <h4>Import Employees</h4>
+      <%= form_tag import_employees_path, accept: 'text/csv', multipart: true do %>
+
+        <div class="form-group">
+          <%= label_tag "select_company" %><br>
+          <%= collection_select :company, :id, Company.all, :id, :name, {class: "form-control"}  %>
+        </div>
+        <div class="form-group">
+          <%= file_field_tag :file %>
+        </div>
+
+        <%= submit_tag "Import file", :class => 'btn btn-success form-control'%>
+      <% end %>
+    </div>
+  </div>
+</div>

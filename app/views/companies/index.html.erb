@@ -1,9 +1,10 @@
 <p id="notice"><%= notice %></p>
+<div class="container mt-5">
+  <h4>Companies</h4>
+  <%= link_to 'New Company',  new_company_path, :class => "float-left"%>
 
-<h1>Companies</h1>
-
-<table>
-  <thead>
+  <table class="table">
+  <thead class="thead-light">
     <tr>
       <th>Name</th>
       <th colspan="3"></th>
@@ -20,8 +21,5 @@
       </tr>
     <% end %>
   </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Company', new_company_path %>
+  </table>
+</div>

@@ -2,5 +2,12 @@ Rails.application.routes.draw do
   resources :policies
   resources :companies
   resources :employees
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  resources :employees do
+    collection {post :import}
+  end
+
+  get "/bulk_import" => "employees#bulk_import", :as => "bulk_import"
+
+  get 'employees/import' => 'employees#employee_import'
 end
